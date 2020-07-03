@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSONP测试</title>
+<script type="text/javascript" src="http://manage.jt.com/js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){	//让页面加载完成之后 执行.
+		alert("测试访问开始!!!!!")
+		$.ajax({
+			//跨域url地址
+			//url:"http://manage.jt.com/web/testJSONP",
+			url:"http://sso.jt.com/findAll",
+			type:"get",				//jsonp只能支持get请求
+			dataType:"jsonp",       //dataType表示返回值类型
+			//jsonp: "callback",      //指定参数名称
+			//jsonpCallback: "hello", //指定回调函数名称
+			success:function (data){  //data经过jQuery封装返回就是json串
+				console.log(data);
+				alert(data);
+			}	
+		});	
+	
+		alert("发起第二个请求")
+		$.ajax({
+			url:"http://sso.jt.com/findCors",
+			type:"get",				//jsonp只能支持get请求
+			success:function (data){  //data经过jQuery封装返回就是json串
+				console.log(data);
+			}	
+		});	
+	})
+</script>
+</head>
+<body>
+	<h1>JSON跨域请求测试</h1>
+</body>
+</html>
